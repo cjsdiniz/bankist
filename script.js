@@ -112,3 +112,18 @@ console.log([...arr, ...arr2]); // Same result as above.
 // JOIN
 console.log('\n🚩 * JOIN *');
 console.log(letters.join('|'));
+
+// NET AT
+console.log('\n🚩 * NEW AT (ES2022) *');
+const dummy = [22, 11, 33];
+console.log('I: ' + dummy);
+console.log(dummy[0]);
+console.log(dummy.at(0));
+
+// Getting last element
+console.log(dummy[dummy.length - 1]);
+console.log(dummy.slice(-1));
+console.log(dummy.at(-1));
+
+// With strings
+console.log('my name'.at(-1));
