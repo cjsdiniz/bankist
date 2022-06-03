@@ -79,11 +79,24 @@ let arr = ['a', 'b', 'c', 'd', 'e'];
 console.log(...arr);
 
 // SLICE
+console.log('\n🚩 * SLICE *');
 console.log('1) ' + arr.slice(2));
 console.log('2) ' + arr.slice(2, 4));
 console.log('3) ' + arr.slice(-2));
 console.log('4) ' + arr.slice(-1));
 console.log('5) ' + arr.slice(1, -2));
-console.log(arr.slice());
+console.log('F: ' + arr.slice());
 
 // SPLICE
+console.log('\n🚩 * SPLICE *');
+console.log(arr);
+//console.log('1) ' + arr.splice(2));
+console.log('1) ' + arr.splice(-1));
+console.log('2) ' + arr.splice(1, 2));
+console.log('F: ' + arr);
+
+// REVERSE
+arr = ['a', 'b', 'c', 'd', 'e'];
+let arr2 = ['i', 'j', 'k', 'l'];
+console.log(arr2);
+console.log(arr2.reverse());
