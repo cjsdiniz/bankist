@@ -96,7 +96,19 @@ console.log('2) ' + arr.splice(1, 2));
 console.log('F: ' + arr);
 
 // REVERSE
+console.log('\n🚩 * REVERSE *');
 arr = ['a', 'b', 'c', 'd', 'e'];
 let arr2 = ['i', 'j', 'k', 'l'];
 console.log(arr2);
 console.log(arr2.reverse());
+console.log(arr2);
+
+// CONCAT
+console.log('\n🚩 * CONCAT *');
+const letters = arr.concat(arr2);
+console.log(letters);
+console.log([...arr, ...arr2]); // Same result as above.
+
+// JOIN
+console.log('\n🚩 * JOIN *');
+console.log(letters.join('|'));
