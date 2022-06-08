@@ -111,8 +111,27 @@ displayMovements(account1.movements);
 
 // console.log(movements.map(mov => mov * eurToUsd));
 
-const movementsDescription = movements.map((mov, i, a) => {
-  if (mov > 0) return `Movement ${i + 1}: You deposited ${mov}`;
-  else return `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`;
-});
+const movementsDescription = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )} `
+  // if (mov > 0) return `Movement ${i + 1}: You deposited ${mov}`;
+  // else return `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`;
+);
 console.log(movementsDescription);
+
+//const user = 'Steven Thomas Williams'; // stw
+const createUsername = accs =>
+  accs.forEach(acc => {
+    //console.log(acc.owner);
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(letter => letter[0])
+      .join('');
+    console.log(acc.username);
+  });
+//const uid = username.map((letter, i) => letter[0]);
+createUsername(accounts);
+console.log(accounts);
