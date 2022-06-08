@@ -139,7 +139,7 @@ createUsername(accounts);
 
 // # FILTER
 // ## Deposits
-const deposits = movements.filter((mov, i) => mov > 0);
+const deposits = movements.filter(mov => mov > 0);
 console.log(movements);
 console.log(deposits);
 
