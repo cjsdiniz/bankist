@@ -138,6 +138,10 @@ createUsername(accounts);
 //console.log(accounts);
 
 // # FILTER
+// ## Deposits
 const deposits = movements.filter((mov, i) => mov > 0);
 console.log(movements);
 console.log(deposits);
+
+// ## Withdrawals
+console.log(movements.filter(mov => mov < 0));
