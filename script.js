@@ -95,18 +95,24 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 
 // console.log(containerMovements.innerHTML);
-const eurToUsd = 1.07;
+// const eurToUsd = 1.07;
 
-const movUSD = movements.map(function (mov) {
-  return mov * eurToUsd;
+// const movUSD = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// });
+// console.log(movements);
+// console.log(movUSD);
+
+// const movUSDf = [];
+// for (const mv of movements) {
+//   movUSDf.push(mv * eurToUsd);
+// }
+// console.log(movUSDf);
+
+// console.log(movements.map(mov => mov * eurToUsd));
+
+const movementsDescription = movements.map((mov, i, a) => {
+  if (mov > 0) return `Movement ${i + 1}: You deposited ${mov}`;
+  else return `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`;
 });
-console.log(movements);
-console.log(movUSD);
-
-const movUSDf = [];
-for (const mv of movements) {
-  movUSDf.push(mv * eurToUsd);
-}
-console.log(movUSDf);
-
-console.log(movements.map(mov => mov * eurToUsd));
+console.log(movementsDescription);
