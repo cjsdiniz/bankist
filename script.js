@@ -71,7 +71,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 const displayMovements = function (movements) {
@@ -95,3 +95,18 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 
 // console.log(containerMovements.innerHTML);
+const eurToUsd = 1.07;
+
+const movUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});
+console.log(movements);
+console.log(movUSD);
+
+const movUSDf = [];
+for (const mv of movements) {
+  movUSDf.push(mv * eurToUsd);
+}
+console.log(movUSDf);
+
+console.log(movements.map(mov => mov * eurToUsd));
