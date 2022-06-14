@@ -94,6 +94,12 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const calcDisplayBalance = movements => {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} €`;
+};
+
+calcDisplayBalance(account1.movements);
 // console.log(containerMovements.innerHTML);
 // const eurToUsd = 1.07;
 
@@ -145,3 +151,22 @@ console.log(deposits);
 
 // ## Withdrawals
 console.log(movements.filter(mov => mov < 0));
+
+// # REDUCE
+// ## Accumulator is like a snowball
+console.log(movements);
+const balance = movements.reduce(function (acc, cur, i) {
+  console.log(i + ') ' + acc);
+  return acc + cur;
+}, 0);
+console.log(balance);
+
+// With a for loop
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+
+console.log('Balance2: ', balance2);
+
+// Maximum value
+const max = movements.reduce((p, c) => (c > p ? c : p), movements[0]);
+console.log('Maximum: ', max);
