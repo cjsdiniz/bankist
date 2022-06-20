@@ -115,6 +115,10 @@ const calcDisplaySummary = (mov, ir) => {
   const interest = movements
     .filter(mov => mov > 0)
     .map(mov => (mov * ir) / 100)
+    .filter((int, i, arr) => {
+      console.log(arr);
+      return int >= 1;
+    })
     .reduce((acc, mov) => acc + mov, 0);
   labelSumInterest.textContent = `${interest}€`;
 };
