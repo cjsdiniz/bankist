@@ -170,3 +170,13 @@ console.log('Balance2: ', balance2);
 // Maximum value
 const max = movements.reduce((p, c) => (c > p ? c : p), movements[0]);
 console.log('Maximum: ', max);
+
+console.log('🚩');
+const eurToUsd = 1.07;
+
+// PIPELINE
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD);
