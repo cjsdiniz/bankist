@@ -84,7 +84,7 @@ const displayMovements = function (movements) {
         <div class="movements__type movements__type--${type}" > ${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov}€</div>
       </div>
       `;
 
@@ -100,6 +100,26 @@ const calcDisplayBalance = movements => {
 };
 
 calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = (mov, ir) => {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const outcomes = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${-outcomes}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(mov => (mov * ir) / 100)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+
+calcDisplaySummary(account1.movements, account1.interestRate);
 // console.log(containerMovements.innerHTML);
 // const eurToUsd = 1.07;
 
@@ -177,6 +197,10 @@ const eurToUsd = 1.07;
 // PIPELINE
 const totalDepositsUSD = movements
   .filter(mov => mov > 0)
-  .map(mov => mov * eurToUsd)
+  .map((mov, i, arr) => {
+    // console.log(arr);
+    return mov * eurToUsd;
+  })
+  // .map(mov => mov * eurToUsd)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD);
