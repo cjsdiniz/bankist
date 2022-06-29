@@ -71,7 +71,8 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+//const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [];
 
 /////////////////////////////////////////////////
 const displayMovements = movements => {
@@ -101,7 +102,7 @@ const calcDisplayBalance = movements => {
 
 //
 
-const calcDisplaySummary = (mov, ir) => {
+const calcDisplaySummary = (movements, ir) => {
   const incomes = movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
@@ -177,7 +178,11 @@ btnLogin.addEventListener('click', event => {
     // Display UI and welcome message
 
     labelWelcome.textContent = `Welcome back, ${curLogin.owner.split(' ')[0]}`;
+    containerApp.style.opacity = 100;
 
+    // Cçear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginUsername.focus();
     // Display movements
     displayMovements(curLogin.movements);
 
@@ -185,11 +190,9 @@ btnLogin.addEventListener('click', event => {
     calcDisplayBalance(curLogin.movements);
 
     // Display summary
-    console.log(curLogin);
     calcDisplaySummary(curLogin.movements, curLogin.interestRate);
 
     // Show movements
-    containerApp.style.opacity = 100;
   } else {
     containerApp.style.opacity = 0;
     console.log('🛑NO LOGIN');
