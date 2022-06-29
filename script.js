@@ -74,7 +74,7 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
-const displayMovements = function (movements) {
+const displayMovements = movements => {
   containerMovements.innerHTML = '';
   movements.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
@@ -92,14 +92,14 @@ const displayMovements = function (movements) {
     // containerMovements.insertAdjacentHTML('beforeend', html); // ordena ascendentemente
   });
 };
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 
 const calcDisplayBalance = movements => {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} €`;
 };
 
-calcDisplayBalance(account1.movements);
+//
 
 const calcDisplaySummary = (mov, ir) => {
   const incomes = movements
@@ -116,14 +116,13 @@ const calcDisplaySummary = (mov, ir) => {
     .filter(mov => mov > 0)
     .map(mov => (mov * ir) / 100)
     .filter((int, i, arr) => {
-      console.log(arr);
+      // console.log(arr);
       return int >= 1;
     })
     .reduce((acc, mov) => acc + mov, 0);
   labelSumInterest.textContent = `${interest}€`;
 };
 
-calcDisplaySummary(account1.movements, account1.interestRate);
 // console.log(containerMovements.innerHTML);
 // const eurToUsd = 1.07;
 
@@ -150,7 +149,7 @@ const movementsDescription = movements.map(
   // if (mov > 0) return `Movement ${i + 1}: You deposited ${mov}`;
   // else return `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`;
 );
-console.log(movementsDescription);
+// console.log(movementsDescription);
 
 // # Username creation
 //const user = 'Steven Thomas Williams'; // stw
@@ -162,11 +161,42 @@ const createUsername = accs =>
       .split(' ')
       .map(letter => letter[0])
       .join('');
-    console.log(acc.username);
+    // console.log(acc.username);
   });
 createUsername(accounts);
 //console.log(accounts);
 
+// Event handlers
+let curLogin;
+btnLogin.addEventListener('click', event => {
+  event.preventDefault(); //Prevent form from submitting
+  curLogin = accounts.find(acc => acc.username === inputLoginUsername.value);
+  console.log('LOGIN: ', curLogin);
+  if (curLogin?.pin === Number(inputLoginPin.value)) {
+    console.log('🟢LOGIN');
+    // Display UI and welcome message
+
+    labelWelcome.textContent = `Welcome back, ${curLogin.owner.split(' ')[0]}`;
+
+    // Display movements
+    displayMovements(curLogin.movements);
+
+    // Display balance
+    calcDisplayBalance(curLogin.movements);
+
+    // Display summary
+    console.log(curLogin);
+    calcDisplaySummary(curLogin.movements, curLogin.interestRate);
+
+    // Show movements
+    containerApp.style.opacity = 100;
+  } else {
+    containerApp.style.opacity = 0;
+    console.log('🛑NO LOGIN');
+  }
+});
+
+/*
 // # FILTER
 // ## Deposits
 const deposits = movements.filter(mov => mov > 0);
@@ -208,3 +238,4 @@ const totalDepositsUSD = movements
   // .map(mov => mov * eurToUsd)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD);
+*/
